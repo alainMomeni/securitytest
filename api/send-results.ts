@@ -40,11 +40,14 @@ export default async function handler(
       <pre>${results.incidentResponse}</pre>
     `;
 
+    const fromAddress = 'onboarding@resend.dev';
+    const toAddress = 'alainmomeni01@gmail.com';
+
     const { data, error } = await resend.emails.send({
-      from: 'Évaluation Sécurité <onboarding@resend.dev>',
-      to: ['alainmomeni01@gmail.com'], // <-- N'OUBLIEZ PAS DE METTRE VOTRE ADRESSE GMAIL ICI
+      from: fromAddress,
+      to: [toAddress],
       subject: `Résultats de ${results.userInfo.firstName} ${results.userInfo.lastName}`,
-      replyTo: results.userInfo.email,
+      replyTo: results.userInfo.email, // <--- CORRECTION ICI (reply_to -> replyTo)
       html: emailHtml,
     });
 
